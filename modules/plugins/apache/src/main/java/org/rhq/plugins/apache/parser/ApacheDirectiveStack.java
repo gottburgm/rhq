@@ -15,6 +15,10 @@ public class ApacheDirectiveStack {
         stack.add(dir);
     }
 
+    public ApacheDirective getStack() {
+        return stack;
+    }
+
     public ApacheDirective getLastDirective() {
         return stack.get(stack.size() - 1);
     }

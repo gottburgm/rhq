@@ -34,7 +34,9 @@ public class ApacheParserImpl implements ApacheParser {
 
     private final static String INCLUDE_DIRECTIVE = "Include";
     private final static String INCLUDEOPTIONAL_DIRECTIVE = "IncludeOptional";
-    private static final String SERVER_ROOT_DIRECTIVE = "ServerRoot";
+    private final static String SERVER_ROOT_DIRECTIVE = "ServerRoot";
+    private final static String LISTEN_DIRECTIVE = "Listen";
+
     private final ApacheDirectiveTree tree;
     private ApacheDirectiveStack stack;
     private String serverRootPath;
@@ -72,15 +74,20 @@ public class ApacheParserImpl implements ApacheParser {
             }
         } else if (directiveName.equals(SERVER_ROOT_DIRECTIVE)) {
             this.serverRootPath = AugeasNodeValueUtil.unescape(directive.getValuesAsString());
-        }
+        } else if (directiveName.equals(LISTEN_DIRECTIVE)) {
+	    // Add a regex to check port's number validity here 
+	}
 
         if (nodeInspector != null) {
             //let the inspector process this directive in case it sees something of interest
             nodeInspector.inspect(directiveName, directive.getValues(), directive.getValuesAsString());
         }
 
-        directive.setParentNode(stack.getLastDirective());
-        stack.getLastDirective().addChildDirective(directive);
+	// Add the directive only if the same one is not already found in the configuration file
+	if(!ApacheConfigReader.SearchDirectiveDuplicated(directiveName, directive.getValuesAsString, this)) {
+            directive.setParentNode(stack.getLastDirective());
+            stack.getLastDirective().addChildDirective(directive);
+	}
     }
 
     public void endNestedDirective(ApacheDirective directive) {
