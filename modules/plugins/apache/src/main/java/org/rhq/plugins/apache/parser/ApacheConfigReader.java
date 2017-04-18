@@ -24,7 +24,7 @@ public class ApacheConfigReader {
         for (ApacheDirective dir : stack.getStack()) {
           if(dir.getName() == name || dir.getValuesAsString() == value) {
              log.warn("Apache configuration file already conatins the directive " + name + " with the value " + value + " .");
-             throw new ApacheParserException("Apache configuration file already conatins the directive " + name + " with the value " + value + " .");
+
 	         return true;
           }
        }
@@ -36,7 +36,7 @@ public class ApacheConfigReader {
         File configFile = new File(path);
         if (!configFile.exists()) {
             log.warn("Apache configuration file " + path + " was not found.");
-            throw new ApacheParserException("Apache configuration file " + path + " was not found.");
+            
         }
 
         BufferedReader br = null;
