@@ -15,7 +15,7 @@ public class ApacheDirectiveStack {
         stack.add(dir);
     }
 
-    public ArrayList<ApacheDirective> getStack() {
+    public List<ApacheDirective> getStack() {
         return stack;
     }
 
