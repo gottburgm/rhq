@@ -19,7 +19,7 @@ public class ApacheConfigReader {
         searchFile(path, parser);
     }
 
-    public static boolean SearchDirectiveDuplicated(String name, String value, ApacheDirectiveStack stack) {
+    public static boolean SearchDirectiveDuplicated(String name, String value, ApacheDirectiveStack stack, ApacheParser parser) {
 
         for (ApacheDirective dir : stack.getStack()) {
           if(dir.getName() == name || dir.getValuesAsString() == value) {

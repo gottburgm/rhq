@@ -84,7 +84,7 @@ public class ApacheParserImpl implements ApacheParser {
         }
 
 	// Add the directive only if the same one is not already found in the configuration file
-	if(!ApacheConfigReader.SearchDirectiveDuplicated(directiveName, directive.getValuesAsString(), stack)) {
+	if(!ApacheConfigReader.SearchDirectiveDuplicated(directiveName, directive.getValuesAsString(), stack, this)) {
             directive.setParentNode(stack.getLastDirective());
             stack.getLastDirective().addChildDirective(directive);
 	}
