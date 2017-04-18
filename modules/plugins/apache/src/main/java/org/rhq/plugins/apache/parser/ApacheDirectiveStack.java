@@ -5,7 +5,7 @@ import java.util.List;
 
 public class ApacheDirectiveStack {
 
-    protected List<ApacheDirective> stack;
+    protected ArrayList<ApacheDirective> stack;
 
     public ApacheDirectiveStack() {
         stack = new ArrayList<ApacheDirective>();
@@ -15,7 +15,7 @@ public class ApacheDirectiveStack {
         stack.add(dir);
     }
 
-    public List<ApacheDirective> getStack() {
+    public ArrayList<ApacheDirective> getStack() {
         return stack;
     }
 
