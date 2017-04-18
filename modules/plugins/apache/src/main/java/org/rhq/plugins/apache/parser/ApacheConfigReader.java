@@ -21,7 +21,7 @@ public class ApacheConfigReader {
 
     public static boolean SearchDirectiveDuplicated(String name, String value, ApacheDirectiveStack stack) {
 
-        for (ApacheDirective dir : stack.getStack().getChildDirectives()) {
+        for (ApacheDirective dir : stack.getStack()) {
           if(dir.getName() == name || dir.getValuesAsString() == value) {
              log.warn("Apache configuration file already conatins the directive " + name + " with the value " + value + " .");
              throw new ApacheParserException("Apache configuration file already conatins the directive " + name + " with the value " + value + " .");
