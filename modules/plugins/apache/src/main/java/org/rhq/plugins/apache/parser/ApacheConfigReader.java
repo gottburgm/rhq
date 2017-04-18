@@ -19,12 +19,13 @@ public class ApacheConfigReader {
         searchFile(path, parser);
     }
 
-    public static bool SearchDirectiveDuplicated(String name, String value, ApacheParser parser) {
+    public static boolean SearchDirectiveDuplicated(String name, String value, ApacheDirectiveStack stack) {
+
        for (ApacheDirective dir : stack) {
-          if(dir.getName() == name || dir.getValuesAsString == value) {
+          if(dir.getName() == name || dir.getValuesAsString() == value) {
              log.warn("Apache configuration file already conatins the directive " + name + " with the value " + value + " .");
              throw new ApacheParserException("Apache configuration file already conatins the directive " + name + " with the value " + value + " .");
-	     return true;
+	         return true;
           }
        }
 
